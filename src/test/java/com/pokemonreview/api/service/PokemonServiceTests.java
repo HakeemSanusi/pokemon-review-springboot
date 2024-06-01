@@ -32,10 +32,8 @@ public class PokemonServiceTests {
 
     @Test
     public void PokemonService_CreatePokemon_ReturnsPokemonDto() {
-        Pokemon pokemon = Pokemon.builder()
-                .name("pikachu")
-                .type("electric").build();
-        PokemonDto pokemonDto = PokemonDto.builder().name("pickachu").type("electric").build();
+        Pokemon pokemon = new Pokemon("pikachu","electric");
+        PokemonDto pokemonDto = new PokemonDto("pikachu","electric");
 
         when(pokemonRepository.save(Mockito.any(Pokemon.class))).thenReturn(pokemon);
 
@@ -57,7 +55,7 @@ public class PokemonServiceTests {
     @Test
     public void PokemonService_FindById_ReturnPokemonDto() {
         int pokemonId = 1;
-        Pokemon pokemon = Pokemon.builder().id(1).name("pikachu").type("electric").type("this is a type").build();
+        Pokemon pokemon = new Pokemon(1,"pikachu","electric this is a type");
         when(pokemonRepository.findById(pokemonId)).thenReturn(Optional.ofNullable(pokemon));
 
         PokemonDto pokemonReturn = pokemonService.getPokemonById(pokemonId);
@@ -68,9 +66,8 @@ public class PokemonServiceTests {
     @Test
     public void PokemonService_UpdatePokemon_ReturnPokemonDto() {
         int pokemonId = 1;
-        Pokemon pokemon = Pokemon.builder().id(1).name("pikachu").type("electric").type("this is a type").build();
-        PokemonDto pokemonDto = PokemonDto.builder().id(1).name("pikachu").type("electric").type("this is a type").build();
-
+        Pokemon pokemon = new Pokemon(1,"pikachu","electric this is a type");
+        PokemonDto pokemonDto = new PokemonDto(1,"pikachu","electric this is a type");
         when(pokemonRepository.findById(pokemonId)).thenReturn(Optional.ofNullable(pokemon));
         when(pokemonRepository.save(pokemon)).thenReturn(pokemon);
 
@@ -82,7 +79,8 @@ public class PokemonServiceTests {
     @Test
     public void PokemonService_DeletePokemonById_ReturnVoid() {
         int pokemonId = 1;
-        Pokemon pokemon = Pokemon.builder().id(1).name("pikachu").type("electric").type("this is a type").build();
+        Pokemon pokemon = new Pokemon(1,"pikachu","electric this is a type");
+
 
         when(pokemonRepository.findById(pokemonId)).thenReturn(Optional.ofNullable(pokemon));
         doNothing().when(pokemonRepository).delete(pokemon);

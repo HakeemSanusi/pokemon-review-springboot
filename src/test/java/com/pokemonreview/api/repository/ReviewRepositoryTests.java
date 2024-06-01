@@ -24,7 +24,7 @@ public class ReviewRepositoryTests {
 
     @Test
     public void ReviewRepository_SaveAll_ReturnsSavedReview() {
-        Review review = Review.builder().title("title").content("content").stars(5).build();
+        Review review = new Review("title", "content",5);
 
         Review savedReview = reviewRepository.save(review);
 
@@ -34,8 +34,8 @@ public class ReviewRepositoryTests {
 
     @Test
     public void ReviewRepostory_GetAll_ReturnsMoreThenOneReview() {
-        Review review = Review.builder().title("title").content("content").stars(5).build();
-        Review review2 = Review.builder().title("title").content("content").stars(5).build();
+        Review review = new Review("title", "content",5);
+        Review review2 = new Review("title", "content",5);
 
         reviewRepository.save(review);
         reviewRepository.save(review2);
@@ -48,7 +48,7 @@ public class ReviewRepositoryTests {
 
     @Test
     public void ReviewRepository_FindById_ReturnsSavedReview() {
-        Review review = Review.builder().title("title").content("content").stars(5).build();
+        Review review = new Review("title", "content",5);
 
         reviewRepository.save(review);
 
@@ -59,8 +59,7 @@ public class ReviewRepositoryTests {
 
     @Test
     public void ReviewRepository_UpdateReview_ReturnReview() {
-        Review review = Review.builder().title("title").content("content").stars(5).build();
-
+        Review review = new Review("title", "content",5);
         reviewRepository.save(review);
 
         Review reviewSave = reviewRepository.findById(review.getId()).get();
@@ -74,8 +73,7 @@ public class ReviewRepositoryTests {
 
     @Test
     public void ReviewRepository_ReviewDelete_ReturnReviewIsEmpty() {
-        Review review = Review.builder().title("title").content("content").stars(5).build();
-
+        Review review = new Review("title", "content",5);
         reviewRepository.save(review);
 
         reviewRepository.deleteById(review.getId());

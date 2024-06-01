@@ -41,10 +41,10 @@ public class ReviewServiceTests {
 
     @BeforeEach
     public void init() {
-        pokemon = Pokemon.builder().name("pikachu").type("electric").build();
-        pokemonDto = PokemonDto.builder().name("pickachu").type("electric").build();
-        review = Review.builder().title("title").content("content").stars(5).build();
-        reviewDto = ReviewDto.builder().title("review title").content("test content").stars(5).build();
+        pokemon = new Pokemon("Pikachu", "Electric");
+        pokemonDto = new PokemonDto("pickachu", "electric");
+        review = new Review("title", "content", 5);
+        reviewDto = new ReviewDto("review title", "test content", 5);
     }
 
     @Test

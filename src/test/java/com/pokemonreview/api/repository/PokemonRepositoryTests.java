@@ -23,9 +23,7 @@ public class PokemonRepositoryTests {
     public void PokemonRepository_SaveAll_ReturnSavedPokemon() {
 
         //Arrange
-        Pokemon pokemon = Pokemon.builder()
-                .name("pikachu")
-                .type("electric").build();
+        Pokemon pokemon = new Pokemon("pikachu", "electric");
 
         //Act
         Pokemon savedPokemon = pokemonRepository.save(pokemon);
@@ -37,12 +35,8 @@ public class PokemonRepositoryTests {
 
     @Test
     public void PokemonRepository_GetAll_ReturnMoreThenOnePokemon() {
-        Pokemon pokemon = Pokemon.builder()
-                .name("pikachu")
-                .type("electric").build();
-        Pokemon pokemon2 = Pokemon.builder()
-                .name("pikachu")
-                .type("electric").build();
+        Pokemon pokemon = new Pokemon("pikachu", "electric");
+        Pokemon pokemon2 = new Pokemon("pikachu", "electric");
 
         pokemonRepository.save(pokemon);
         pokemonRepository.save(pokemon2);
@@ -55,9 +49,7 @@ public class PokemonRepositoryTests {
 
     @Test
     public void PokemonRepository_FindById_ReturnPokemon() {
-        Pokemon pokemon = Pokemon.builder()
-                .name("pikachu")
-                .type("electric").build();
+        Pokemon pokemon = new Pokemon("pikachu", "electric");
 
         pokemonRepository.save(pokemon);
 
@@ -68,10 +60,7 @@ public class PokemonRepositoryTests {
 
     @Test
     public void PokemonRepository_FindByType_ReturnPokemonNotNull() {
-        Pokemon pokemon = Pokemon.builder()
-                .name("pikachu")
-                .type("electric").build();
-
+        Pokemon pokemon = new Pokemon("pikachu", "electric");
         pokemonRepository.save(pokemon);
 
         Pokemon pokemonList = pokemonRepository.findByType(pokemon.getType()).get();
@@ -81,10 +70,7 @@ public class PokemonRepositoryTests {
 
     @Test
     public void PokemonRepository_UpdatePokemon_ReturnPokemonNotNull() {
-        Pokemon pokemon = Pokemon.builder()
-                .name("pikachu")
-                .type("electric").build();
-
+        Pokemon pokemon = new Pokemon("pikachu", "electric");
         pokemonRepository.save(pokemon);
 
         Pokemon pokemonSave = pokemonRepository.findById(pokemon.getId()).get();
@@ -99,9 +85,7 @@ public class PokemonRepositoryTests {
 
     @Test
     public void PokemonRepository_PokemonDelete_ReturnPokemonIsEmpty() {
-        Pokemon pokemon = Pokemon.builder()
-                .name("pikachu")
-                .type("electric").build();
+        Pokemon pokemon = new Pokemon("pikachu", "electric");
 
         pokemonRepository.save(pokemon);
 
